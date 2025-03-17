@@ -3,6 +3,11 @@ import base64
 
 import streamlit as st
 
+API_KEY = st.secrets["general"]["API_KEY"]
+client = OpenAI(
+    base_url="https://openrouter.ai/api/v1",
+    api_key=API_KEY,
+)
 
 st.title("Digit Recognizer")
 
@@ -14,12 +19,7 @@ def encode_image(image):
     return base64.b64encode(image.getvalue()).decode("utf-8")
 
 def Proccess(image) -> str:
-    API_KEY = st.secrets["general"]["API_KEY"]
-    st.write(f"API Key: {API_KEY}") 
-    client = OpenAI(
-        base_url="https://openrouter.ai/api/v1",
-        api_key=API_KEY,
-    )
+
 
     # Encode the image
     base64_image = encode_image(image)
