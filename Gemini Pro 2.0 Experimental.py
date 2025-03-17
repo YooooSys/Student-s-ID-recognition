@@ -9,7 +9,7 @@ client = OpenAI(
     api_key=API_KEY,
 )
 
-st.title("Digit Recognizer")
+st.title("Student's ID recognizer (Ultimate version)")
 
 # File uploader
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
@@ -46,7 +46,7 @@ def Proccess(image) -> str:
     return completion.choices[0].message.content
 
 
-if st.button("Student's ID recognition (Ultimate version)"):
+if st.button("Proccess"):
 
     if uploaded_file is not None:
         st.write(Proccess(uploaded_file))
