@@ -50,5 +50,6 @@ if st.button("Proccess"):
 
     if uploaded_file is not None:
         st.write(Proccess(uploaded_file))
+        st.image(uploaded_file, caption='Result', use_container_width=True)
     else:
         st.write("Please provide an image.")
