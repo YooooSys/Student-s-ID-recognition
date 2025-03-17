@@ -15,6 +15,7 @@ def encode_image(image):
 
 def Proccess(image) -> str:
     API_KEY = st.secrets["general"]["API_KEY"]
+    st.write(f"API Key: {API_KEY}") 
     client = OpenAI(
         base_url="https://openrouter.ai/api/v1",
         api_key=API_KEY,
