@@ -17,7 +17,7 @@ uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png
 
 # Encode an image to base64
 def encode_image(image):
-    return base64.b64encode(image.read()).decode("utf-8")
+    return base64.b64encode(image.getvalue()).decode("utf-8")
 
 def Proccess(image) -> str:
     # Encode the image
