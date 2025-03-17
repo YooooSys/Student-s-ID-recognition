@@ -16,13 +16,12 @@ st.title("Digit Recognizer")
 uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png"])
 
 # Encode an image to base64
-def encode_image(image_path):
-    with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode("utf-8")
+def encode_image(image):
+    return base64.b64encode(image.read()).decode("utf-8")
 
-def Proccess(image_path) -> str:
+def Proccess(image) -> str:
     # Encode the image
-    base64_image = encode_image(image_path)
+    base64_image = encode_image(image)
 
     # Send a request to the OpenRouter API with the image
     completion = client.chat.completions.create(
