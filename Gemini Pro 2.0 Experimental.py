@@ -16,7 +16,10 @@ uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png
 
 # Encode an image to base64
 def encode_image(image):
-    return base64.b64encode(image.getvalue()).decode("utf-8")
+    file_bytes = image.read()
+    
+    # Encode the bytes to base64
+    base64_image = base64.b64encode(file_bytes).decode("utf-8")
 
 def Proccess(image) -> str:
 
@@ -29,8 +32,8 @@ def Proccess(image) -> str:
                 {
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": "what is the text inside (only return result)"},
-                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
+                        {"type": "text", "text": "what is the number after the Mã số sinh viên (which is Student's id) (only return result. Note: The number contains exactly 7 digit, no letter, no special character, always start with 2, return null if there's no result)"},
+                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encode_image(image)}"}}
                     ]
                 }
             ]
