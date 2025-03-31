@@ -20,7 +20,7 @@ def encode_image(image):
     
     # Encode the bytes to base64
     base64_image = base64.b64encode(file_bytes).decode("utf-8")
-
+    print("encoded complete")
 def Proccess(image) -> str:
 
 
