@@ -38,7 +38,7 @@ def Process(image) -> str:
     if completion and hasattr(completion, 'choices') and completion.choices:
         return completion.choices[0].message.content
     else:
-        return null
+        return Null
 
 
 
