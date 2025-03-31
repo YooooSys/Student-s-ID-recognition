@@ -40,6 +40,9 @@ def Proccess(image) -> str:
         else:
             print("No valid response from API")
             print(completion)  # Debug raw response
+    
+    except Exception as e:
+        print(f"API call failed: {e}")
 
 
 
