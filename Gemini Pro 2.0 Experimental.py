@@ -23,23 +23,23 @@ def Proccess(image) -> str:
 
     # Encode the image
     try:
-    completion = client.chat.completions.create(
-        model="google/gemini-2.5-pro-exp-03-25:free",
-        messages=[
-            {
-                "role": "user",
-                "content": [
-                    {"type": "text", "text": "what is the text inside (only return result)"},
-                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
-                ]
-            }
-        ]
-    )
-    if completion and hasattr(completion, 'choices') and completion.choices:
-        return completion.choices[0].message.content
-    else:
-        print("No valid response from API")
-        print(completion)  # Debug raw response
+        completion = client.chat.completions.create(
+            model="google/gemini-2.5-pro-exp-03-25:free",
+            messages=[
+                {
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": "what is the text inside (only return result)"},
+                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
+                    ]
+                }
+            ]
+        )
+        if completion and hasattr(completion, 'choices') and completion.choices:
+            return completion.choices[0].message.content
+        else:
+            print("No valid response from API")
+            print(completion)  # Debug raw response
 
 
 
