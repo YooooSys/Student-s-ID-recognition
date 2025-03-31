@@ -22,24 +22,25 @@ def Proccess(image) -> str:
 
 
     # Encode the image
-    base64_image = encode_image(image)
-
-    # Send a request to the OpenRouter API with the image
+    try:
     completion = client.chat.completions.create(
-        model="google/gemini-2.0-pro-exp-02-05:free",
+        model="google/gemini-2.5-pro-exp-03-25:free",
         messages=[
             {
                 "role": "user",
                 "content": [
-                    {"type": "text", "text": "what is the number after the Mã số sinh viên (which is Student's id) (only return result. Note: The number contains exactly 7 digit, no letter, no special character, always start with 2, return null if there's no result)"},
-
+                    {"type": "text", "text": "what is the text inside (only return result)"},
                     {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
                 ]
             }
         ]
     )
+    if completion and hasattr(completion, 'choices') and completion.choices:
+        return completion.choices[0].message.content
+    else:
+        print("No valid response from API")
+        print(completion)  # Debug raw response
 
-    return completion.choices[0].message.content
 
 
 if st.button("Proccess"):
