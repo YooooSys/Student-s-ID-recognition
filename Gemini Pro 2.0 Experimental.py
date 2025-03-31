@@ -26,10 +26,6 @@ def Proccess(image) -> str:
 
     # Send a request to the OpenRouter API with the image
     completion = client.chat.completions.create(
-        extra_headers={
-            "HTTP-Referer": "your_site_url_here",
-            "X-Title": "your_site_name_here"
-        },
         model="google/gemini-2.0-pro-exp-02-05:free",
         messages=[
             {
