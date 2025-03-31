@@ -19,34 +19,27 @@ def encode_image(image):
     file_bytes = image.read()
     
     # Encode the bytes to base64
-    st.write("complete")
     return base64.b64encode(file_bytes).decode("utf-8")
 
 def Process(image) -> str:
 
+    completion = client.chat.completions.create(
+        model="google/gemini-2.0-pro-exp-02-05:free",
+        messages=[
+            {
+                "role": "user",
+                "content": [
+                    {"type": "text", "text": "what is the number after the Mã số sinh viên (which is Student's id) (only return result. Note: The number contains exactly 7 digit, no letter, no special character, always start with 2, return null if there's no result)"},
+                    {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encode_image(image)}"}}
+                ]
+            }
+        ]
+    )
+    if completion and hasattr(completion, 'choices') and completion.choices:
+        return completion.choices[0].message.content
+    else:
+        return null
 
-    # Encode the image
-    try:
-        completion = client.chat.completions.create(
-            model="google/gemini-2.0-pro-exp-02-05:free",
-            messages=[
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "text", "text": "what is the number after the Mã số sinh viên (which is Student's id) (only return result. Note: The number contains exactly 7 digit, no letter, no special character, always start with 2, return null if there's no result)"},
-                        {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{encode_image(image)}"}}
-                    ]
-                }
-            ]
-        )
-        if completion and hasattr(completion, 'choices') and completion.choices:
-            return completion.choices[0].message.content
-        else:
-            return null
-
-    
-    except Exception as e:
-        print(f"API call failed: {e}")
 
 
 
