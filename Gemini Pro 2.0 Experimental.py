@@ -19,10 +19,10 @@ def encode_image(image):
     file_bytes = image.read()
     
     # Encode the bytes to base64
-    print("complete")
+    st.write("complete")
     return base64.b64encode(file_bytes).decode("utf-8")
 
-def Proccess(image) -> str:
+def Process(image) -> str:
 
 
     # Encode the image
@@ -42,8 +42,8 @@ def Proccess(image) -> str:
         if completion and hasattr(completion, 'choices') and completion.choices:
             return completion.choices[0].message.content
         else:
-            print("No valid response from API")
-            print(completion)  # Debug raw response
+            return null
+
     
     except Exception as e:
         print(f"API call failed: {e}")
@@ -53,7 +53,7 @@ def Proccess(image) -> str:
 if st.button("Proccess"):
 
     if uploaded_file is not None:
-        st.write(Proccess(uploaded_file))
+        st.write(Process(uploaded_file))
         st.image(uploaded_file, caption='Result', use_container_width=True)
     else:
         st.write("Please provide an image.")
