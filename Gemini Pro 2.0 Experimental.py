@@ -28,7 +28,7 @@ def Process(image) -> str:
     # Encode the image
     try:
         completion = client.chat.completions.create(
-            model="google/gemini-2.5-pro-exp-03-25:free",
+            model="google/gemini-2.0-pro-exp-02-05:free",
             messages=[
                 {
                     "role": "user",
