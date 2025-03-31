@@ -22,7 +22,7 @@ def encode_image(image):
     return base64.b64encode(file_bytes).decode("utf-8")
 
 def Process(image) -> str:
-
+    mime_type = "image/jpeg" if image.type in ["image/jpeg", "image/jpg"] else "image/png"
     completion = client.chat.completions.create(
         model="google/gemini-2.0-pro-exp-02-05:free",
         messages=[
