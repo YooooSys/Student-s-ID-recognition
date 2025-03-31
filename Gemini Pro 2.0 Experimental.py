@@ -30,7 +30,7 @@ def Process(image) -> str:
                 "role": "user",
                 "content": [
                     {"type": "text", "text": "what is the number after the Mã số sinh viên (which is Student's id) (only return result. Note: The number contains exactly 7 digit, no letter, no special character, always start with 2, return null if there's no result)"},
-                    {"type": "image_url", "image_url": {"url": f"data:{mime_type};base64,{base64_image}"}}
+                    {"type": "image_url", "image_url": {"url": f"data:{mime_type};base64,{encode_image(image)}"}}
                 ]
             }
         ]
